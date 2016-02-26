@@ -1,6 +1,11 @@
-# Composer template for Drupal projects
+# Fork of Composer template for Drupal projects
 
-[![Build Status](https://travis-ci.org/drupal-composer/drupal-project.svg?branch=8.x)](https://travis-ci.org/drupal-composer/drupal-project)
+This repository aim to add small tweaks for the Composer Template that are not
+require for the common of the Drupal Projects. This tweaks are especific
+settings that might be not interesting for the 99.99% of Drupal Projects.
+
+I'll keep adding the features from the original template plus adding extra
+tweaks.
 
 This project template should provide a kickstart for managing your site
 dependencies with [Composer](https://getcomposer.org/).
@@ -19,7 +24,7 @@ You might need to replace `composer` with `php composer.phar` (or similar) for y
 After that you can create the project:
 
 ```
-composer create-project drupal-composer/drupal-project:8.x-dev some-dir --stability dev --no-interaction
+composer create-project killua/drupal-project-tweaks:8.x-dev some-dir --stability dev --no-interaction
 ```
 
 With `composer require ...` you can download new dependencies to your installation.
