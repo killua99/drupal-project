@@ -18,7 +18,7 @@
     "require": {
         "composer/installers": "^1.0.20",
         "cweagans/composer-patches": "~1.0",
-        "drupal/core": "8.0.*",
+        "drupal/core": "8.1.*-dev",
         "drush/drush": "~8.0",
         "drupal/console": "~0.10"
     },
