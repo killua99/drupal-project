@@ -21,17 +21,19 @@ First you need to [install composer](https://getcomposer.org/doc/00-intro.md#ins
 > Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
 You might need to replace `composer` with `php composer.phar` (or similar) for your setup.
 
+I recommend to install globaly this component for composer to download parallel. [hirak/prestissimo](https://github.com/hirak/prestissimo)
+
 After that you can create the project:
 
 ```
-composer create-project killua99/drupal-project-tweaks:8.x-dev some-dir --stability dev --no-interaction
+composer create-project killua99/drupal-project-tweaks awesome-project --no-progress --profile --prefer-dist
 ```
 
 With `composer require ...` you can download new dependencies to your installation.
 
 ```
-cd some-dir
-composer require drupal/devel:8.*
+cd awesome-project
+composer require drupal/devel
 ```
 
 ## What does the template do?
@@ -45,24 +47,17 @@ When installing the given `composer.json` some tasks are taken care of:
 * Theme (packages of type `drupal-theme`) will be placed in `web/themes/contrib/`
 * Profiles (packages of type `drupal-profile`) will be placed in `web/profiles/contrib/`
 * Creates default writable versions of `settings.php` and `services.yml`.
-* Creates `sites/default/files`-directory.
+* Creates `static`-directory.
 * Latest version of drush is installed locally for use at `vendor/bin/drush`.
 * Latest version of DrupalConsole is installed locally for use at `vendor/bin/drupal`.
+* Write a public_html to increase the security of Drupal see [Moving to docroot](https://www.drupal.org/node/2767907) I call it public_html (I think makes more sense).
 
 ## Updating Drupal Core
 
-Updating Drupal core is a two-step process.
+I'm thinking how to keep it simple, for now I just run this command.
 
-1. Update the version number of `drupal/core` in `composer.json`.
-1. Run `composer update drupal/core`.
-1. Run `./scripts/drupal/update-scaffold [drush-version-spec]` to update files
-   in the `web` directory, where `drush-version-spec` is an optional identifier
-   acceptable to Drush, e.g. `drupal-8.0.x` or `drupal-8.1.x`, corresponding to
-   the version you specified in `composer.json`. (Defaults to `drupal-8`, the
-   latest stable release.) Review the files for any changes and restore any
-   customizations to `.htaccess` or `robots.txt`.
-1. Commit everything all together in a single commit, so `web` will remain in
-   sync with the `core` when checking out branches or running `git bisect`.
+    composer update --prefer-dist -o
+
 
 ## Generate composer.json from existing project
 
