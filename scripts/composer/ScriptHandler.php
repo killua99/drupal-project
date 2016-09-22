@@ -21,6 +21,7 @@ class ScriptHandler
         $files = '/public_html/static';
 
         $dirs = [
+          getcwd() . '/config/sync',
           $root . '/modules',
           $root . '/profiles',
           $root . '/themes',
