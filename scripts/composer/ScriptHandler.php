@@ -31,6 +31,9 @@ class ScriptHandler
 
         $index_file = <<<EOD
 <?php
+/**
+ *
+ */
 chdir('..');
 require 'index.php';
 EOD;
@@ -88,6 +91,12 @@ EOD;
         }
 
         try {
+            $fs->symlink($root . '/core/modules/system/js', $root . '/public_html/core/modules/system/js', true);
+        } catch (IOExceptionInterface $e) {
+            $event->getIO()->write("An error occurred while creating symlink directory at " . $e->getPath());
+        }
+
+        try {
             $fs->symlink($root . '/libraries', $root . '/public_html/libraries', true);
         } catch (IOExceptionInterface $e) {
             $event->getIO()->write("An error occurred while creating symlink directory at " . $e->getPath());
@@ -96,6 +105,8 @@ EOD;
 
     /**
      * Keep asset files in the right position.
+     *
+     * @todo: Finish the mirror asset.
      */
     public static function mirrorAssetFiles(Event $event)
     {
